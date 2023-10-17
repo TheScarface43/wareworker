@@ -1,4 +1,4 @@
-package com.example.wareworker;
+package com.github.thescarface43;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
