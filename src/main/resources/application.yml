@@ -3,11 +3,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/wareworker
     username: postgres
     password: change_me
+    initialization-mode: always
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-      show-sql: true
+      ddl-auto: none
+  sql:
+    init.mode: always
