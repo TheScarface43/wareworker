@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS warehouse_user (
     user_id SERIAL PRIMARY KEY,
     login VARCHAR(64) UNIQUE NOT NULL,
     password CHAR(85) NOT NULL,
+    enabled BIT NOT NULL DEFAULT 1,
     first_name VARCHAR(32) NOT NULL,
     last_name VARCHAR(32) NOT NULL,
     email VARCHAR(64),
@@ -26,10 +27,19 @@ CREATE TABLE IF NOT EXISTS warehouse (
 CREATE TABLE IF NOT EXISTS permission (
     permission_id SERIAL PRIMARY KEY,
     permission INT NOT NULL,
+    -- 000000 - read only, 
+    -- 000001 - add ware amounts to locations,
+    -- 000010 - remove ware amounts from locations,
+    -- 000100 - manage ware detials (add or remove wares from database, edit existing ones),
+    -- 001000 - manage location details (add, remove or change the layout of a given warehouse),
+    -- 010000 - warehouse admin (change name, type and address of a given warehouse, manage users and their rights under that warehouse),
+    -- 100000 - global admin (add, remove and change all warehouses and all users)
+    -- mix and match for a desired set of permissions, for example 000011 to move wares to and from locations, or 011111 for total control over one warehouse
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES warehouse_user (user_id),
-    warehouse_id INT NOT NULL,
-    FOREIGN KEY (warehouse_id) REFERENCES warehouse (warehouse_id)
+    warehouse_id INT,
+    FOREIGN KEY (warehouse_id) REFERENCES warehouse (warehouse_id),
+    CHECK (permission >= 32 or warehouse_id is not null)
 );
 
 CREATE TABLE IF NOT EXISTS location_type (
@@ -59,6 +69,7 @@ CREATE TABLE IF NOT EXISTS ware (
     ware_id SERIAL PRIMARY KEY,
     name VARCHAR(64) UNIQUE NOT NULL,
     unit VARCHAR(10) NOT NULL,
+    permit_decimal BIT NOT NULL DEFAULT 1,
     ean VARCHAR(13) UNIQUE,
     price DECIMAL(10,2),
     vat INT,
@@ -82,3 +93,6 @@ CREATE TABLE IF NOT EXISTS operation (
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES warehouse_user (user_id)
 );
+
+INSERT INTO warehouse_user (login, password, first_name, last_name) VALUES ('global_admin', 'change_me', 'Global', 'Admin');
+INSERT INTO permission (permission, user_id) VALUES (63, 1);
