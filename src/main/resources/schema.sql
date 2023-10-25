@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS ware (
     ware_name VARCHAR(64) UNIQUE NOT NULL,
     unit VARCHAR(10) NOT NULL,
     permit_decimal BIT NOT NULL DEFAULT '1',
+    permit_decimal BIT NOT NULL DEFAULT '1',
     ean VARCHAR(13) UNIQUE,
     price DECIMAL(10,2),
     vat INT,
