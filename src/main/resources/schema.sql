@@ -95,5 +95,7 @@ CREATE TABLE IF NOT EXISTS operation (
     FOREIGN KEY (user_id) REFERENCES warehouse_user (id)
 );
 
-INSERT INTO warehouse_user (user_login, user_password, first_name, last_name) VALUES ('global_admin', 'change_me', 'Global', 'Admin');
-INSERT INTO permission (permission, user_id) VALUES (63, 1);
+INSERT INTO warehouse_user (user_login, user_password, first_name, last_name)
+    SELECT 'global_admin', 'change_me', 'Global', 'Admin' WHERE NOT EXISTS (SELECT user_login FROM warehouse_user WHERE user_login = 'global_admin');
+INSERT INTO permission (permission, user_id)
+    SELECT 63, 1 WHERE NOT EXISTS (SELECT user_id FROM permission WHERE user_id = 1);
