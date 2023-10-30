@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-	@GetMapping("/")
+	@GetMapping("/test")
 	public String index() {
-		return "WareWorker welcome page.";
+		return "WareWorker test page.";
 	}
 }
