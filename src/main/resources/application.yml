@@ -6,6 +6,6 @@ spring:
     initialization-mode: always
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
   sql:
     init.mode: always

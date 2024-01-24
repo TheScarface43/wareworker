@@ -77,35 +77,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Example name 1</td>
-              <td>Examples</td>
-              <td>1234567890123</td>
-              <td>A</td>
-              <td>32</td>
-              <td>3</td>
-              <td>100</td>
-              <td>pcs.</td>
-            </tr>
-            <tr>
-              <td>Example name 2</td>
-              <td>Examples</td>
-              <td>2345678901234</td>
-              <td>D</td>
-              <td>12</td>
-              <td>2</td>
-              <td>29</td>
-              <td>pcs.</td>
-            </tr>
-            <tr>
-              <td>Very long example name 3</td>
-              <td>Examples</td>
-              <td>3456789012345</td>
-              <td>T</td>
-              <td>15</td>
-              <td>1</td>
-              <td>1</td>
-              <td>pcs.</td>
+            <tr th:each="entry : ${state}">
+              <td th:text="${entry.ware.name}"></td>
+              <td th:text="${entry.ware.category.name}"></td>
+              <td th:text="${entry.ware.ean}"></td>
+              <td th:text="${entry.location.rack}"></td>
+              <td th:text="${entry.location.spot}"></td>
+              <td th:text="${entry.location.level}"></td>
+              <td th:text="${entry.totalAmount}"></td>
+              <td th:text="${entry.ware.unit}"></td>
             </tr>
           </tbody>
         </table>

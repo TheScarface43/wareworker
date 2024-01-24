@@ -1,13 +1,28 @@
 package com.github.thescarface43;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import com.github.thescarface43.DTOs.WarehouseStateDTO;
+import com.github.thescarface43.interfaces.OperationInterface;
+
+@Controller
 public class MainController {
 
-	@GetMapping("/test")
-	public String index() {
-		return "WareWorker test page.";
+	@Autowired
+	OperationInterface operationInterface;
+
+	@GetMapping("/main")
+	public String main(Model model) {
+		Pageable requestedPage = PageRequest.of(0, 20, Sort.by("ware.name"));
+		Page<WarehouseStateDTO> state = operationInterface.getWarehouseState(requestedPage);
+		model.addAttribute("state", state);
+		return "main";
 	}
 }
