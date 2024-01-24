@@ -18,7 +18,7 @@ public class OperationEntity {
     private long id;
     @Column(name = "type", nullable = false)
     private Integer type;
-    @Column(name = "amount", nullable = false, precision = 10, scale = 5)
+    @Column(name = "amount", nullable = false, precision = 11, scale = 5)
     private BigDecimal amount;
     @Column(name = "time", nullable = false)
     private LocalDateTime time;
