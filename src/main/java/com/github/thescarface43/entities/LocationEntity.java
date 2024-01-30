@@ -31,6 +31,9 @@ public class LocationEntity {
     @OneToMany(mappedBy = "location")
     private List<OperationEntity> operations;
 
+    public Long getId() {
+        return id;
+    }
     public String getRack() {
         return rack;
     }

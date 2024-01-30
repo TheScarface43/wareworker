@@ -20,7 +20,7 @@ public class MainController {
 
 	@GetMapping("/main")
 	public String main(Model model) {
-		Pageable requestedPage = PageRequest.of(0, 50, Sort.by("ware.name"));
+		Pageable requestedPage = PageRequest.of(0, 50, Sort.by("ware.name", "location.rack", "location.spot", "location.level"));
 		Page<WarehouseStateDTO> state = operationInterface.getWarehouseState(requestedPage);
 		model.addAttribute("state", state);
 		return "main";

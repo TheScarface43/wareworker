@@ -11,6 +11,7 @@ INSERT INTO ware (id, name, unit, permit_decimal, ean, ware_category_id) VALUES 
 INSERT INTO ware (id, name, unit, permit_decimal, ean, ware_category_id) VALUES (5, 'DeLorean', 'pcs.', FALSE, '5678901234567', 2);
 INSERT INTO ware (id, name, unit, permit_decimal, ean, ware_category_id) VALUES (6, 'Volkswagen Scirocco', 'pcs.', FALSE, '6789012345678', 2);
 INSERT INTO ware (id, name, unit, permit_decimal, ean, ware_category_id) VALUES (7, 'Granite', 'kg', TRUE, '7890123456789', 3);
+INSERT INTO ware (id, name, unit, permit_decimal, ean, ware_category_id) VALUES (8, 'Some long and obnoxious fruit name', 'pcs.', TRUE, '8901234567890', 1);
 INSERT INTO location_type (id, name) VALUES (1, 'Regular Pallet Space');
 INSERT INTO location_type (id, name) VALUES (2, 'Small Shelf');
 INSERT INTO location_type (id, name) VALUES (3, 'Car Parking Spot');
@@ -44,3 +45,4 @@ INSERT INTO operation (id, type, amount, time, warehouse_user_id, ware_id, locat
 INSERT INTO operation (id, type, amount, time, warehouse_user_id, ware_id, location_id) VALUES (11, 2, 24, '2024-01-24 08:05:25', 1, 1, 1);
 INSERT INTO operation (id, type, amount, time, warehouse_user_id, ware_id, location_id) VALUES (12, 2, 6, '2024-01-24 08:11:53', 1, 4, 16);
 INSERT INTO operation (id, type, amount, time, warehouse_user_id, ware_id, location_id) VALUES (13, 1, 560.25, '2024-01-24 11:22:33', 1, 7, 5);
+INSERT INTO operation (id, type, amount, time, warehouse_user_id, ware_id, location_id) VALUES (14, 1, 6, '2024-01-24 12:07:15', 1, 8, 16);
