@@ -1,14 +1,11 @@
 package com.github.thescarface43.interfaces;
 
-import com.github.thescarface43.entities.WareEntity;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import com.github.thescarface43.entities.WareEntity;
 
 public interface WareInterface extends JpaRepository<WareEntity, Long> {
-
-    List<WareEntity> findByName (String name);
-    List<WareEntity> findByEan (String ean);
-    List<WareEntity> findByNameContaining(String searchString);
+    Optional<WareEntity> findById (Long id);
 }

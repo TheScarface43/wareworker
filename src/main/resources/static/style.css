@@ -7,6 +7,22 @@
   font-size: 2rem;
 }
 
+.page-btn {
+  font-size: 2rem;
+  width: 100%;
+  background-color: #28242c;
+  border-style: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.action-result {
+  background-color: #94ffad;
+  width: 100%;
+  font-size: 2rem;
+}
+
 .clickable:hover {
   cursor: pointer;
 }

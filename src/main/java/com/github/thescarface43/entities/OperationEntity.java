@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,6 +17,7 @@ import jakarta.persistence.Table;
 @Table(name = "operation")
 public class OperationEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "type", nullable = false)
     private Integer type;
@@ -33,6 +36,15 @@ public class OperationEntity {
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
     private LocationEntity location;
+
+    public OperationEntity(Integer type, BigDecimal amount, WarehouseUserEntity user, WareEntity ware, LocationEntity location) {
+        this.type = type;
+        this.amount = amount;
+        this.user = user;
+        this.ware = ware;
+        this.location = location;
+        this.time = LocalDateTime.now();
+    }
 
     public Integer getType() {
         return type;

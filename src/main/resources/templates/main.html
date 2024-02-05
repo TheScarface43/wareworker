@@ -84,7 +84,7 @@
               <td th:text="${entry.location.rack}"></td>
               <td th:text="${entry.location.spot}"></td>
               <td th:text="${entry.location.level}"></td>
-              <td th:text="${entry.totalAmount}"></td>
+              <td th:text="${@formatter.formatBigDecimal(entry.totalAmount)}"></td>
               <td th:text="${entry.ware.unit}"></td>
             </tr>
           </tbody>

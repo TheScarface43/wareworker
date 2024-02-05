@@ -4,6 +4,8 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,6 +17,7 @@ import jakarta.persistence.UniqueConstraint;
 @Table(name = "location", uniqueConstraints = @UniqueConstraint(columnNames = {"rack", "spot", "level", "warehouse_id"}))
 public class LocationEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "rack", nullable = false, length = 16)
     private String rack;

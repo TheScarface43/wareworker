@@ -62,6 +62,7 @@
     </nav>
 
     <main class="container">
+      <div class="action-result container-fluid text-center" th:text="${actionResult} ?: ''"></div>
       <div class="table-responsive">
         <table class="table">
           <tr>
@@ -82,13 +83,86 @@
           </tr>
           <tr>
             <th>Amount:</th>
-            <td th:text="${localWare.totalAmount}"></td>
+            <td th:text="${@formatter.formatBigDecimal(localWare.totalAmount)}"></td>
           </tr>
           <tr>
             <th>Unit:</th>
             <td th:text="${localWare.ware.unit}"></td>
           </tr>
         </table>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <button class="btn btn-primary page-btn" type="button" onclick="window.location.href='/main'">
+              <i class="bi-arrow-left-square-fill"></i>
+              <span class="d-none d-md-inline">Back</span>
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-primary page-btn" type="button" data-bs-toggle="modal" data-bs-target="#modalAdd">
+              <i class="bi-plus-square-fill"></i>
+              <span class="d-none d-md-inline">Add</span>
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-primary page-btn" type="button" data-bs-toggle="modal" data-bs-target="#modalTake">
+              <i class="bi-dash-square-fill"></i>
+              <span class="d-none d-md-inline">Take</span>
+            </button>
+          </div>
+          <div class="col-3">
+            <button class="btn btn-primary page-btn" type="button">
+              <i class="bi-clock-fill"></i>
+              <span class="d-none d-md-inline">History</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalAdd" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalAddLabel">Add wares</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="" method="post">
+              <div class="modal-body">
+                <input type="number" class="form-control" id="inputFieldAdd" name="inputField" placeholder="Amount to add..."
+                required th:min="${localWare.ware.isDecimalAllowed} ? 0.01 : 1" max="1000000" th:step="${localWare.ware.isDecimalAllowed} ? 0.01 : 1">
+                <input type="hidden" name="inputType" value="ADD">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Confirm</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalTake" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTakeLabel">Take wares</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="" method="post">
+              <div class="modal-body">
+                <input type="number" class="form-control" id="inputFieldTake" name="inputField" placeholder="Amount to take..."
+                required th:min="${localWare.ware.isDecimalAllowed} ? 0.01 : 1" th:max="${@formatter.formatBigDecimal(localWare.totalAmount)}" th:step="${localWare.ware.isDecimalAllowed} ? 0.01 : 1">
+                <input type="hidden" name="inputType" value="TAKE">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Confirm</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </main>
   </body>
